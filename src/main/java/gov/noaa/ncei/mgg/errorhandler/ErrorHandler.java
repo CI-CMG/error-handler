@@ -19,14 +19,12 @@ import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @SuppressWarnings({"rawtypes", "SameParameterValue"})
-@RestControllerAdvice
-public class ErrorHandler extends ResponseEntityExceptionHandler {
+public abstract class ErrorHandler extends ResponseEntityExceptionHandler {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ErrorHandler.class);
 
@@ -94,7 +92,7 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
         HttpStatus.UNPROCESSABLE_ENTITY);
   }
 
-  private static String toPath(List<Reference> pathParts) {
+  protected static String toPath(List<Reference> pathParts) {
     StringBuilder pathBuilder = new StringBuilder();
     for (int i = 0; i < pathParts.size(); i++) {
       Reference reference = pathParts.get(i);
@@ -110,7 +108,7 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
     return pathBuilder.toString();
   }
 
-  private static ApiErrorBuilder buildFromViolations(Set<ConstraintViolation<?>> violations, boolean raw) {
+  protected static ApiErrorBuilder buildFromViolations(Set<ConstraintViolation<?>> violations, boolean raw) {
     ApiErrorBuilder errorBuilder = ApiError.builder().error("Invalid Request");
     for (ConstraintViolation<?> violation : violations) {
       String path = violation.getPropertyPath().toString();
