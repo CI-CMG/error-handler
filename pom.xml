@@ -16,7 +16,7 @@
   <name>error-handler</name>
 
   <properties>
-    <java.version>11</java.version>
+    <java.version>1.8</java.version>
     <snakeyaml.version>1.33</snakeyaml.version>
   </properties>
 

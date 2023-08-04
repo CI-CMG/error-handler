@@ -11,6 +11,7 @@ import gov.noaa.ncei.mgg.errorhandler.ApiException;
 import gov.noaa.ncei.mgg.errorhandler.model.SearchParameters;
 import java.beans.PropertyChangeEvent;
 import java.nio.charset.StandardCharsets;
+import java.util.HashSet;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -55,64 +56,67 @@ public class RestController {
 
   @GetMapping(path = "/constraint-violation")
   public void testConstraintViolation() {
-    throw new ConstraintViolationException(Set.of(
-        new ConstraintViolation<Object>() {
-          @Override
-          public String getMessage() {
-            return "Test invalid";
-          }
+    ConstraintViolation<Object> constraintViolation = new ConstraintViolation<Object>() {
+      @Override
+      public String getMessage() {
+        return "Test invalid";
+      }
 
-          @Override
-          public String getMessageTemplate() {
-            return null;
-          }
+      @Override
+      public String getMessageTemplate() {
+        return null;
+      }
 
-          @Override
-          public Object getRootBean() {
-            return null;
-          }
+      @Override
+      public Object getRootBean() {
+        return null;
+      }
 
-          @Override
-          public Class<Object> getRootBeanClass() {
-            return null;
-          }
+      @Override
+      public Class<Object> getRootBeanClass() {
+        return null;
+      }
 
-          @Override
-          public Object getLeafBean() {
-            return null;
-          }
+      @Override
+      public Object getLeafBean() {
+        return null;
+      }
 
-          @Override
-          public Object[] getExecutableParameters() {
-            return new Object[0];
-          }
+      @Override
+      public Object[] getExecutableParameters() {
+        return new Object[0];
+      }
 
-          @Override
-          public Object getExecutableReturnValue() {
-            return null;
-          }
+      @Override
+      public Object getExecutableReturnValue() {
+        return null;
+      }
 
-          @Override
-          public Path getPropertyPath() {
-            return PathImpl.createPathFromString("TEST.TEST");
-          }
+      @Override
+      public Path getPropertyPath() {
+        return PathImpl.createPathFromString("TEST.TEST");
+      }
 
-          @Override
-          public Object getInvalidValue() {
-            return null;
-          }
+      @Override
+      public Object getInvalidValue() {
+        return null;
+      }
 
-          @Override
-          public ConstraintDescriptor<?> getConstraintDescriptor() {
-            return null;
-          }
+      @Override
+      public ConstraintDescriptor<?> getConstraintDescriptor() {
+        return null;
+      }
 
-          @Override
-          public <U> U unwrap(Class<U> aClass) {
-            return null;
-          }
-        }
-    ));
+      @Override
+      public <U> U unwrap(Class<U> aClass) {
+        return null;
+      }
+    };
+    
+    Set<ConstraintViolation<Object>> constraintViolations = new HashSet<>();
+    constraintViolations.add(constraintViolation);
+    
+    throw new ConstraintViolationException(constraintViolations);
   }
 
   @GetMapping(path = "/api-exception")
