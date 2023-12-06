@@ -11,7 +11,7 @@
 
   <groupId>gov.noaa.ncei.mgg</groupId>
   <artifactId>error-handler</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
   <name>error-handler</name>
 
   <properties>
@@ -24,7 +24,7 @@
     <connection>scm:git:git@github.com:CI-CMG/error-handler.git</connection>
     <developerConnection>scm:git:git@github.com:CI-CMG/error-handler.git</developerConnection>
     <url>https://github.com/CI-CMG/error-handler</url>
-    <tag>v1.0.0</tag>
+    <tag>1.0</tag>
   </scm>
 
   <dependencies>
