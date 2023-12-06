@@ -24,7 +24,7 @@
     <connection>scm:git:git@github.com:CI-CMG/error-handler.git</connection>
     <developerConnection>scm:git:git@github.com:CI-CMG/error-handler.git</developerConnection>
     <url>https://github.com/CI-CMG/error-handler</url>
-    <tag>0.0</tag>
+    <tag>1.0</tag>
   </scm>
 
   <dependencies>
